@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
+import { Pelicula } from '../interfaces/interfaces';
 
 @Component({
   selector: 'app-tab1',
@@ -8,10 +9,23 @@ import { MoviesService } from '../services/movies.service';
 })
 export class Tab1Page implements OnInit {
 
+    peliculasRecientes: Pelicula[] = [];
+
+    /**
+     * slidesPerView, esto es para mostrar el primer slide completo y el 30% del otro
+     */
+    slideOpts = {
+        slidesPerView: 1.3,
+        freeMode: true,
+    };
+
     constructor(private moviesService: MoviesService) {}
 
     ngOnInit() {
         this.moviesService.getFeature()
-            .subscribe( console.log );
+            .subscribe( (resp) => {
+                console.log('respuesta', resp);
+                this.peliculasRecientes = resp.results;
+            } );
     }
 }

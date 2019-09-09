@@ -1,17 +1,24 @@
 <ion-content>
 
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col>
+                <h3>Películas Nuevas</h3>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
-        <ion-slides [options]="slideOpts" >
+    <ion-slides [options]="slideOpts" >
 
-            <ion-slide *ngFor="let pelicula of (peliculasRecientes) ">
+        <ion-slide *ngFor="let pelicula of (peliculasRecientes) ">
 
-                <ion-card>
-                    <img [src]="pelicula.backdrop_path | imagen">    
-                </ion-card>
+            <ion-card>
+                <img [src]="pelicula.backdrop_path | imagen">    
+            </ion-card>
 
-            </ion-slide>
-      
-        </ion-slides>
+        </ion-slide>
+    
+    </ion-slides>
 
 
     

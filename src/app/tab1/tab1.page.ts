@@ -14,18 +14,27 @@ export class Tab1Page implements OnInit {
     /**
      * slidesPerView, esto es para mostrar el primer slide completo y el 30% del otro
      */
-    slideOpts = {
-        slidesPerView: 1.3,
-        freeMode: true,
-    };
+    // slideOpts = {
+    //     slidesPerView: 1.3,
+    //     freeMode: true,
+    // };
+
+    populares: Pelicula[] = [];
 
     constructor(private moviesService: MoviesService) {}
 
     ngOnInit() {
         this.moviesService.getFeature()
             .subscribe( (resp) => {
-                console.log('respuesta', resp);
+                // console.log('respuesta', resp);
                 this.peliculasRecientes = resp.results;
             } );
+
+
+        this.moviesService.getPopulares()
+            .subscribe( resp => {
+                console.log('populares', resp.results);
+                this.populares = resp.results;
+            } )
     }
 }

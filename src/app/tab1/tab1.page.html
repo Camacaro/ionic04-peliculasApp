@@ -40,6 +40,8 @@
         </ion-row>
     </ion-grid>
 
-    <app-slideshow-poster [peliculas]="populares"></app-slideshow-poster>
+    <!-- el cargar mas es evento que se ejecuta desde el hijo (app-slideshow-pares) para notificar al padre (tab1.page) -->
+    <!-- el cagarMas() es de tab1.page.ts, si se mandaran parametros se usa el $event -->
+    <app-slideshow-pares [peliculas]="populares" (cagarMas)="cagarMas()"></app-slideshow-pares>
     
 </ion-content>

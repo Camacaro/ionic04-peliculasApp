@@ -31,10 +31,22 @@ export class Tab1Page implements OnInit {
             } );
 
 
+        this.getPopulares();
+    }
+
+    cagarMas() {
+        this.getPopulares();
+    }
+
+    getPopulares() {
+
         this.moviesService.getPopulares()
             .subscribe( resp => {
-                console.log('populares', resp.results);
-                this.populares = resp.results;
-            } )
+                // console.log('populares', resp.results);
+                // agrego cada arrglo/item del arreglo resp.results
+
+                const arrTemp = [ ...this.populares, ...resp.results  ];
+                this.populares = arrTemp;
+            } );
     }
 }

@@ -20,7 +20,7 @@ export class DetalleComponent implements OnInit {
         slidesPerView: 3.3,
         freeMode: true,
         spaceBetween: -5
-    }
+    };
 
     oculto = 150;
 

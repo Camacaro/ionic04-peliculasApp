@@ -1,9 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Buscar Película
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-toolbar>
+    <!-- el debounce="700" es para que espera 700 milesimas de segundos despues de escribri para buscar -->
+    <ion-searchbar placeholder="Buscar película"
+                    animated
+                    debounce="700"
+                    [value]="textoBuscar"
+                    (ionChange)="buscar( $event )">                
+    </ion-searchbar>
+</ion-toolbar>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>
+                <ion-spinner name="crescent"></ion-spinner>
+            </ion-col>
+
+        </ion-row>
+
+    </ion-grid>
+
+
+    <ion-list>
+        
+        <ion-list-header>
+            <ion-label>Ideas</ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let idea of ideas">
+            <ion-label color="primary" (click)="asignarIdea( idea )"> {{ idea }} </ion-label>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

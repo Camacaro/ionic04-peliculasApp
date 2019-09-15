@@ -78,4 +78,11 @@ export class MoviesService {
 
         return this.ejecutarQuery<RespuestaCredits>( query );
     }
+
+    buscarPelicula( texto: string ) {
+
+        const query = `/search/movie?query=${ texto }`;
+
+        return this.ejecutarQuery<RespMovieDB>( query );
+    }
 }

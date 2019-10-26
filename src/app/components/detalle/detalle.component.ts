@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { PeliculaDetalle, Cast } from '../../interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
+import { DataLocalService } from '../../services/data-local.service';
 
 @Component({
   selector: 'app-detalle',
@@ -24,12 +25,19 @@ export class DetalleComponent implements OnInit {
 
     oculto = 150;
 
+    iconoFavorito = 'star-outline';
+
 
     constructor(private moviesService: MoviesService,
-                private modalController: ModalController) { }
+                private modalController: ModalController,
+                private dataLocalService: DataLocalService) { }
 
-    ngOnInit() {
+    async ngOnInit() {
         // console.log('id', this.id);
+
+        const existe = await this.dataLocalService.existePelicula( this.id );
+
+        this.iconoFavorito = (existe) ? 'star' : 'star-outline';
 
         this.moviesService.getPeliculaDetalle( this.id )
             .subscribe( resp => {
@@ -47,6 +55,14 @@ export class DetalleComponent implements OnInit {
 
     regresar() {
         this.modalController.dismiss();
+    }
+
+     favorito() {
+
+        const existe = this.dataLocalService.guardarPelicula( this.pelicula );
+
+        this.iconoFavorito = (existe) ? 'star' : 'star-outline';
+
     }
 
 }

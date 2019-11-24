@@ -81,7 +81,7 @@ export class Tab3Page implements OnInit {
         });
     }
 
-    // optomizado 
+    // optomizado
     pelisPorGenero( generos: Genre[], peliculas: PeliculaDetalle[] ) {
 
         generos.forEach( genero => {
